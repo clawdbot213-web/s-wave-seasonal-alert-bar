@@ -1,0 +1,59 @@
+{% comment %} Seasonal Alert Bar app block {% endcomment %}
+<div class="s-wave-seasonal-alert-bar" style="--s-wave-alert-bg: {{ block.settings.background_color }}; --s-wave-alert-text: {{ block.settings.text_color }};">
+  <div class="s-wave-seasonal-alert-bar__content">
+    <span class="s-wave-seasonal-alert-bar__message">{{ block.settings.message }}</span>
+    {% if block.settings.link_url != blank %}
+      <a class="s-wave-seasonal-alert-bar__link" href="{{ block.settings.link_url }}">{{ block.settings.link_label }}</a>
+    {% endif %}
+  </div>
+  {% if block.settings.show_close %}
+    <button class="s-wave-seasonal-alert-bar__close" type="button" aria-label="Close alert">×</button>
+  {% endif %}
+</div>
+
+{{ 'seasonal-alert-bar.css' | asset_url | stylesheet_tag }}
+{{ 'seasonal-alert-bar.js' | asset_url | script_tag }}
+
+{% schema %}
+{
+  "name": "Seasonal alert bar",
+  "target": "body",
+  "settings": [
+    {
+      "type": "text",
+      "id": "message",
+      "label": "Message",
+      "default": "Holiday shipping cutoff: order by Dec 20 for delivery."
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Link label",
+      "default": "Shop now"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#111827"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#F9FAFB"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_close",
+      "label": "Show close button",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,45 @@
+:root {
+  --s-wave-alert-bg: #111827;
+  --s-wave-alert-text: #f9fafb;
+}
+
+.s-wave-seasonal-alert-bar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--s-wave-alert-bg);
+  color: var(--s-wave-alert-text);
+  font-family: inherit;
+}
+
+.s-wave-seasonal-alert-bar__content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.s-wave-seasonal-alert-bar__message {
+  font-weight: 500;
+}
+
+.s-wave-seasonal-alert-bar__link {
+  color: inherit;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.s-wave-seasonal-alert-bar__close {
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+}
