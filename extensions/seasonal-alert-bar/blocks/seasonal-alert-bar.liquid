@@ -1,14 +1,70 @@
 {% comment %} Seasonal Alert Bar app block {% endcomment %}
-<div class="s-wave-seasonal-alert-bar" data-dismiss-key="s-wave-alert-{{ block.id }}" style="--s-wave-alert-bg: {{ block.settings.background_color }}; --s-wave-alert-text: {{ block.settings.text_color }};">
+{% assign theme = block.settings.theme_style %}
+{% assign bg = '#111827' %}
+{% assign text = '#f9fafb' %}
+{% assign accent = '#38bdf8' %}
+{% assign border = '#1f2937' %}
+
+{% if theme == 'holiday' %}
+  {% assign bg = '#0f172a' %}
+  {% assign text = '#f8fafc' %}
+  {% assign accent = '#f97316' %}
+  {% assign border = '#1e293b' %}
+{% elsif theme == 'announcement' %}
+  {% assign bg = '#f8fafc' %}
+  {% assign text = '#0f172a' %}
+  {% assign accent = '#2563eb' %}
+  {% assign border = '#e2e8f0' %}
+{% elsif theme == 'minimal' %}
+  {% assign bg = '#ffffff' %}
+  {% assign text = '#0f172a' %}
+  {% assign accent = '#0f172a' %}
+  {% assign border = '#e5e7eb' %}
+{% elsif theme == 'dark' %}
+  {% assign bg = '#111827' %}
+  {% assign text = '#f9fafb' %}
+  {% assign accent = '#38bdf8' %}
+  {% assign border = '#1f2937' %}
+{% elsif theme == 'custom' %}
+  {% assign bg = block.settings.background_color %}
+  {% assign text = block.settings.text_color %}
+  {% assign accent = block.settings.accent_color %}
+  {% assign border = block.settings.border_color %}
+{% endif %}
+
+<div
+  id="s-wave-seasonal-alert-bar"
+  class="s-wave-seasonal-alert-bar s-wave-theme--{{ theme }} s-wave-position--{{ block.settings.position }}{% if block.settings.enable_shadow %} is-shadow{% endif %}"
+  data-dismiss-key="s-wave-alert-{{ block.id }}"
+  data-dismiss-days="{{ block.settings.dismiss_days }}"
+  data-start-time="{{ block.settings.start_time }}"
+  data-end-time="{{ block.settings.end_time }}"
+  data-expired-message="{{ block.settings.expired_message | escape }}"
+  data-expired-behavior="{{ block.settings.expired_behavior }}"
+  style="--s-wave-alert-bg: {{ bg }}; --s-wave-alert-text: {{ text }}; --s-wave-alert-accent: {{ accent }}; --s-wave-alert-border: {{ border }};"
+>
   <div class="s-wave-seasonal-alert-bar__content">
+    {% if block.settings.icon != blank %}
+      <span class="s-wave-seasonal-alert-bar__icon">{{ block.settings.icon }}</span>
+    {% endif %}
+    {% if block.settings.badge_text != blank %}
+      <span class="s-wave-seasonal-alert-bar__badge">{{ block.settings.badge_text }}</span>
+    {% endif %}
     <span class="s-wave-seasonal-alert-bar__message">{{ block.settings.message }}</span>
-    {% if block.settings.link_url != blank %}
-      <a class="s-wave-seasonal-alert-bar__link" href="{{ block.settings.link_url }}">{{ block.settings.link_label }}</a>
+  </div>
+  <div class="s-wave-seasonal-alert-bar__actions">
+    {% if block.settings.link_url != blank and block.settings.link_label != blank %}
+      <a
+        class="s-wave-seasonal-alert-bar__cta s-wave-seasonal-alert-bar__cta--{{ block.settings.cta_style }}"
+        href="{{ block.settings.link_url }}"
+      >
+        {{ block.settings.link_label }}
+      </a>
+    {% endif %}
+    {% if block.settings.show_close %}
+      <button class="s-wave-seasonal-alert-bar__close" type="button" aria-label="Close alert">×</button>
     {% endif %}
   </div>
-  {% if block.settings.show_close %}
-    <button class="s-wave-seasonal-alert-bar__close" type="button" aria-label="Close alert">×</button>
-  {% endif %}
 </div>
 
 {{ 'seasonal-alert-bar.css' | asset_url | stylesheet_tag }}
@@ -26,6 +82,18 @@
       "default": "Holiday shipping cutoff: order by Dec 20 for delivery."
     },
     {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "Holiday"
+    },
+    {
+      "type": "text",
+      "id": "icon",
+      "label": "Icon / emoji",
+      "default": "🎁"
+    },
+    {
       "type": "url",
       "id": "link_url",
       "label": "Link URL"
@@ -37,6 +105,88 @@
       "default": "Shop now"
     },
     {
+      "type": "select",
+      "id": "cta_style",
+      "label": "CTA style",
+      "default": "solid",
+      "options": [
+        { "value": "solid", "label": "Solid" },
+        { "value": "outline", "label": "Outline" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "start_time",
+      "label": "Start time (ISO 8601)",
+      "default": "2026-01-01T00:00:00Z"
+    },
+    {
+      "type": "text",
+      "id": "end_time",
+      "label": "End time (ISO 8601)",
+      "default": "2026-12-31T23:59:59Z"
+    },
+    {
+      "type": "text",
+      "id": "expired_message",
+      "label": "Expired message",
+      "default": "Promotion ended"
+    },
+    {
+      "type": "select",
+      "id": "expired_behavior",
+      "label": "When expired",
+      "default": "hide",
+      "options": [
+        { "value": "hide", "label": "Hide bar" },
+        { "value": "message", "label": "Show expired message" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "position",
+      "label": "Position",
+      "default": "top",
+      "options": [
+        { "value": "top", "label": "Top" },
+        { "value": "bottom", "label": "Bottom" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "dismiss_days",
+      "label": "Dismiss duration (days)",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 7
+    },
+    {
+      "type": "checkbox",
+      "id": "show_close",
+      "label": "Show close button",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_shadow",
+      "label": "Enable shadow",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "theme_style",
+      "label": "Theme preset",
+      "default": "holiday",
+      "options": [
+        { "value": "holiday", "label": "Holiday" },
+        { "value": "announcement", "label": "Announcement" },
+        { "value": "minimal", "label": "Minimal" },
+        { "value": "dark", "label": "Dark" },
+        { "value": "custom", "label": "Custom" }
+      ]
+    },
+    {
       "type": "color",
       "id": "background_color",
       "label": "Background color",
@@ -46,13 +196,19 @@
       "type": "color",
       "id": "text_color",
       "label": "Text color",
-      "default": "#F9FAFB"
+      "default": "#f9fafb"
     },
     {
-      "type": "checkbox",
-      "id": "show_close",
-      "label": "Show close button",
-      "default": true
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#38bdf8"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#1f2937"
     }
   ]
 }

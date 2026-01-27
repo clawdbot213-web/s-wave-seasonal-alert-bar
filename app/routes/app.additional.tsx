@@ -1,83 +1,92 @@
 import {
+  Badge,
+  BlockStack,
   Box,
   Card,
+  InlineStack,
   Layout,
-  Link,
-  List,
   Page,
   Text,
-  BlockStack,
 } from "@shopify/polaris";
 import { TitleBar } from "@shopify/app-bridge-react";
+
+const presets = [
+  {
+    name: "Holiday",
+    description: "Bold seasonal banner for shipping cutoffs.",
+  },
+  {
+    name: "Announcement",
+    description: "Clean, neutral alert for store updates.",
+  },
+  {
+    name: "Minimal",
+    description: "Low-profile bar that blends with your header.",
+  },
+  {
+    name: "Dark",
+    description: "Strong contrast for high-visibility campaigns.",
+  },
+  {
+    name: "Custom",
+    description: "Use your own brand colors and CTA styling.",
+  },
+];
 
 export default function AdditionalPage() {
   return (
     <Page>
-      <TitleBar title="Additional page" />
+      <TitleBar title="Design presets" />
       <Layout>
         <Layout.Section>
           <Card>
-            <BlockStack gap="300">
-              <Text as="p" variant="bodyMd">
-                The app template comes with an additional page which
-                demonstrates how to create multiple pages within app navigation
-                using{" "}
-                <Link
-                  url="https://shopify.dev/docs/apps/tools/app-bridge"
-                  target="_blank"
-                  removeUnderline
-                >
-                  App Bridge
-                </Link>
-                .
+            <BlockStack gap="400">
+              <Text as="h2" variant="headingMd">
+                Theme presets
               </Text>
               <Text as="p" variant="bodyMd">
-                To create your own page and have it show up in the app
-                navigation, add a page inside <Code>app/routes</Code>, and a
-                link to it in the <Code>&lt;NavMenu&gt;</Code> component found
-                in <Code>app/routes/app.jsx</Code>.
+                Pair your alert bar with a seasonal emoji and a clear CTA.
               </Text>
+              <BlockStack gap="300">
+                {presets.map((preset) => (
+                  <Box
+                    key={preset.name}
+                    padding="300"
+                    borderWidth="025"
+                    borderRadius="200"
+                    borderColor="border"
+                  >
+                    <BlockStack gap="150">
+                      <InlineStack gap="200" align="start">
+                        <Badge tone="info">{preset.name}</Badge>
+                        <Text as="span" variant="bodySm" tone="subdued">
+                          {preset.description}
+                        </Text>
+                      </InlineStack>
+                    </BlockStack>
+                  </Box>
+                ))}
+              </BlockStack>
             </BlockStack>
           </Card>
         </Layout.Section>
         <Layout.Section variant="oneThird">
           <Card>
-            <BlockStack gap="200">
+            <BlockStack gap="300">
               <Text as="h2" variant="headingMd">
-                Resources
+                Pro tips
               </Text>
-              <List>
-                <List.Item>
-                  <Link
-                    url="https://shopify.dev/docs/apps/design-guidelines/navigation#app-nav"
-                    target="_blank"
-                    removeUnderline
-                  >
-                    App nav best practices
-                  </Link>
-                </List.Item>
-              </List>
+              <Text as="p" variant="bodySm">
+                Schedule alerts for high-traffic hours and enable dismiss to keep
+                repeat visitors happy.
+              </Text>
+              <Text as="p" variant="bodySm">
+                Use the CTA button style for flash sales.
+              </Text>
             </BlockStack>
           </Card>
         </Layout.Section>
       </Layout>
     </Page>
-  );
-}
-
-function Code({ children }: { children: React.ReactNode }) {
-  return (
-    <Box
-      as="span"
-      padding="025"
-      paddingInlineStart="100"
-      paddingInlineEnd="100"
-      background="bg-surface-active"
-      borderWidth="025"
-      borderColor="border"
-      borderRadius="100"
-    >
-      <code>{children}</code>
-    </Box>
   );
 }
