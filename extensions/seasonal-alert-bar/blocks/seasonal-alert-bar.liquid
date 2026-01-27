@@ -1,5 +1,5 @@
 {% comment %} Seasonal Alert Bar app block {% endcomment %}
-<div class="s-wave-seasonal-alert-bar" style="--s-wave-alert-bg: {{ block.settings.background_color }}; --s-wave-alert-text: {{ block.settings.text_color }};">
+<div class="s-wave-seasonal-alert-bar" data-dismiss-key="s-wave-alert-{{ block.id }}" style="--s-wave-alert-bg: {{ block.settings.background_color }}; --s-wave-alert-text: {{ block.settings.text_color }};">
   <div class="s-wave-seasonal-alert-bar__content">
     <span class="s-wave-seasonal-alert-bar__message">{{ block.settings.message }}</span>
     {% if block.settings.link_url != blank %}
