@@ -1,4 +1,4 @@
-name = "remix"
+name = "seasonal-alert-bar"
 roles = ["frontend", "backend"]
 webhooks_path = "/webhooks/app/uninstalled"
 
