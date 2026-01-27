@@ -1,4 +1,13 @@
-# Shopify App Template - Remix
+# S Wave Seasonal Alert Bar
+
+A Shopify app for theme-ready seasonal alerts (holiday promos, shipping cutoffs, product drops) with fast scheduling and targeting.
+
+- Plan: `docs/APP_PLAN.md`
+- Status: scaffolded from Shopify Remix template; dependency install hangs in this environment
+
+---
+
+## Template Notes
 
 > [!NOTE]
 > **Remix is now React Router.** As of [React Router v7](https://remix.run/blog/merging-remix-and-react-router), Remix and React Router have merged.
