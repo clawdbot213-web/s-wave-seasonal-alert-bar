@@ -41,6 +41,10 @@
   data-end-time="{{ block.settings.end_time }}"
   data-expired-message="{{ block.settings.expired_message | escape }}"
   data-expired-behavior="{{ block.settings.expired_behavior }}"
+  role="region"
+  aria-live="polite"
+  aria-atomic="true"
+  aria-hidden="true"
   style="--s-wave-alert-bg: {{ bg }}; --s-wave-alert-text: {{ text }}; --s-wave-alert-accent: {{ accent }}; --s-wave-alert-border: {{ border }};"
 >
   <div class="s-wave-seasonal-alert-bar__content">

@@ -83,6 +83,9 @@ export default function AdditionalPage() {
               <Text as="p" variant="bodySm">
                 Use the CTA button style for flash sales.
               </Text>
+              <Text as="p" variant="bodySm">
+                Pair the badge with a short icon to reinforce urgency.
+              </Text>
             </BlockStack>
           </Card>
         </Layout.Section>

@@ -27,10 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const showBar = () => {
     bar.classList.add('is-visible');
+    bar.setAttribute('aria-hidden', 'false');
   };
 
   const hideBar = () => {
     bar.classList.remove('is-visible');
+    bar.setAttribute('aria-hidden', 'true');
   };
 
   const updateVisibility = () => {
