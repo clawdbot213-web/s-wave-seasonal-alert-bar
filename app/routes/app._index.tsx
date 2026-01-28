@@ -53,6 +53,7 @@ export default function Index() {
                   <Button url={THEME_EDITOR_URL} target="_top" variant="primary">
                     Open theme editor
                   </Button>
+                  <Button url="/app/settings">Draft an alert</Button>
                   <Button url="/app/additional" variant="plain">
                     Explore design presets
                   </Button>

@@ -25,6 +25,7 @@ export default function App() {
           Dashboard
         </Link>
         <Link to="/app/additional">Design</Link>
+        <Link to="/app/settings">Settings</Link>
       </NavMenu>
       <Outlet />
     </AppProvider>
