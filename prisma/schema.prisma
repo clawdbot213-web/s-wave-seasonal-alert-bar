@@ -32,3 +32,27 @@ model Session {
   refreshToken        String?
   refreshTokenExpires DateTime?
 }
+
+model AlertBar {
+  id        String      @id @default(cuid())
+  shop      String
+  name      String
+  status    String      @default("draft")
+  scope     String      @default("sitewide")
+  content   Json?
+  schedule  Json?
+  style     Json?
+  cta       Json?
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  events    AlertEvent[]
+}
+
+model AlertEvent {
+  id        String   @id @default(cuid())
+  alertId   String
+  eventType String
+  createdAt DateTime @default(now())
+
+  alert AlertBar @relation(fields: [alertId], references: [id], onDelete: Cascade)
+}
