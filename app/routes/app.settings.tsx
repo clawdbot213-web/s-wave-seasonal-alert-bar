@@ -36,6 +36,12 @@ export default function SettingsPage() {
   const [scope, setScope] = useState("sitewide");
   const [placement, setPlacement] = useState("top");
   const [dismissible, setDismissible] = useState(true);
+  const [startDate, setStartDate] = useState("2026-01-29");
+  const [startTime, setStartTime] = useState("09:00");
+  const [endDate, setEndDate] = useState("2026-02-02");
+  const [endTime, setEndTime] = useState("23:59");
+  const [backgroundColor, setBackgroundColor] = useState("#1f2937");
+  const [textColor, setTextColor] = useState("#f9fafb");
 
   const handleDismissibleChange = useCallback(
     (checked: boolean) => setDismissible(checked),
@@ -99,6 +105,52 @@ export default function SettingsPage() {
                   checked={dismissible}
                   onChange={handleDismissibleChange}
                 />
+                <InlineStack gap="300">
+                  <TextField
+                    label="Start date"
+                    value={startDate}
+                    onChange={setStartDate}
+                    autoComplete="off"
+                    type="date"
+                  />
+                  <TextField
+                    label="Start time"
+                    value={startTime}
+                    onChange={setStartTime}
+                    autoComplete="off"
+                    type="time"
+                  />
+                </InlineStack>
+                <InlineStack gap="300">
+                  <TextField
+                    label="End date"
+                    value={endDate}
+                    onChange={setEndDate}
+                    autoComplete="off"
+                    type="date"
+                  />
+                  <TextField
+                    label="End time"
+                    value={endTime}
+                    onChange={setEndTime}
+                    autoComplete="off"
+                    type="time"
+                  />
+                </InlineStack>
+                <InlineStack gap="300">
+                  <TextField
+                    label="Background color"
+                    value={backgroundColor}
+                    onChange={setBackgroundColor}
+                    autoComplete="off"
+                  />
+                  <TextField
+                    label="Text color"
+                    value={textColor}
+                    onChange={setTextColor}
+                    autoComplete="off"
+                  />
+                </InlineStack>
               </FormLayout>
               <InlineStack gap="200">
                 <Button variant="primary">Save draft</Button>
