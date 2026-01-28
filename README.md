@@ -7,6 +7,13 @@ A Shopify app for theme-ready seasonal alerts (holiday promos, shipping cutoffs,
 - Privacy summary: `docs/PRIVACY_SUMMARY.md`
 - Status: scaffolded from Shopify Remix template; dependency install hangs in this environment
 
+## Next steps
+
+1. Resolve dependency install hang (try pnpm/yarn/bun or manual install).
+2. Confirm Shopify app config via CLI (`shopify app dev`) once dependencies are installed.
+3. Replace template landing content with Seasonal Alert Bar setup flow.
+4. Add data model for alerts (title, message, theme, schedule, targeting, status).
+
 ---
 
 ## Template Notes
