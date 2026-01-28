@@ -1,8 +1,10 @@
-# S Wave Seasonal Alert Bar
+# Seasonal Alert Bar
 
 A Shopify app for theme-ready seasonal alerts (holiday promos, shipping cutoffs, product drops) with fast scheduling and targeting.
 
 - Plan: `docs/APP_PLAN.md`
+- App Store draft: `docs/APP_STORE_LISTING.md`
+- Privacy summary: `docs/PRIVACY_SUMMARY.md`
 - Status: scaffolded from Shopify Remix template; dependency install hangs in this environment
 
 ---
